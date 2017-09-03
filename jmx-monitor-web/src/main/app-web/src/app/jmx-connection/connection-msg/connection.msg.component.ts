@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import {Component, Input} from "@angular/core";
+import {JmxConnectionMsgModel} from "../model/jmx.connection.msg.model";
 
 @Component({
   selector: "app-jmx-connection-msg",
@@ -8,4 +9,8 @@ import { Component } from "@angular/core";
   ]
 })
 
-export class  ConnectionMsgComponent { }
+export class  ConnectionMsgComponent {
+  connectionMsg: JmxConnectionMsgModel;
+
+
+}

@@ -1,4 +1,6 @@
-import { Component } from "@angular/core";
+import {Component, ViewChild} from "@angular/core";
+import {JmxConnectionMsgModel} from "./model/jmx.connection.msg.model";
+import {ConnectionMsgComponent} from "./connection-msg/connection.msg.component";
 
 // import { ConnectionFormComponent } from "./connection-form/connection-form-component";
 
@@ -7,16 +9,16 @@ import { Component } from "@angular/core";
   templateUrl: "./jmx.connection.component.html",
   styleUrls: [
     './jmx.connection.component.css'
-  ],
-  providers: [
-
-  ],
-  viewProviders: [
-    // ConnectionFormComponent
-  ],
-  entryComponents: [
-    // ConnectionFormComponent
-  ],
+  ]
 })
 
-export class JmxConnectionComponent { }
+export class JmxConnectionComponent {
+  @ViewChild(ConnectionMsgComponent)
+  private connectionMsgComponent: ConnectionMsgComponent;
+
+  //TODO display connection msg in connection-msg component
+  onJmxConnect(jmxConnectionMsg: JmxConnectionMsgModel) {
+    // console.log(jmxConnectionMsg);
+    this.connectionMsgComponent.connectionMsg = jmxConnectionMsg;
+  }
+}

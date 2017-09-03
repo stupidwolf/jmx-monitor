@@ -20,10 +20,12 @@ export class JmxConnectionService {
       .catch(JmxConnectionService.handleError);
   }
 
-  public jmxConnect(jmxConnection: JmxConnectionModel): Promise<JmxConnectionMsgModel> {
+  public jmxConnect(jmxConnection: JmxConnectionModel): Promise<JmxConnectionMsgModel>{
     return this.http.post(this.connectionUrl, jmxConnection)
       .toPromise()
-      .then( response => response.json().data as JmxConnectionMsgModel)
+      .then( response => {
+        return response.json() as JmxConnectionMsgModel
+      })
       .catch(JmxConnectionService.handleError);
   }
 

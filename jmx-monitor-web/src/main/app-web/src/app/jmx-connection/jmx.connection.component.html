@@ -1,10 +1,21 @@
 <div class="row">
   <div class="col-md-1"></div>
   <div class="col-md-7">
-    <app-jmx-connection-form></app-jmx-connection-form>
+    <div class="row">
+      <div id="app-jmx-connection-form-container">
+        <app-jmx-connection-form
+          (onJmxConnect)="onJmxConnect($event)"
+        ></app-jmx-connection-form>
+      </div>
+    </div>
+    <div class="row">
+      <div id="app-jmx-connection-msg-container">
+        <app-jmx-connection-msg></app-jmx-connection-msg>
+      </div>
+    </div>
   </div>
   <div class="col-md-3">
-    <app-jmx-connection-msg></app-jmx-connection-msg>
+
   </div>
   <div class="col-md-1"></div>
 </div>
