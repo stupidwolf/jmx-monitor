@@ -1,0 +1,13 @@
+#logging:
+#  path: logs/jmx-monitor
+#  file: logs/jmx-monitor/log.log
+logging:
+  config: classpath:logback.xml
+
+spring:
+  output:
+    ansi:
+      enabled: DETECT
+
+
+debug: true

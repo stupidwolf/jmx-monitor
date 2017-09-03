@@ -1,0 +1,43 @@
+<app-title [subtitle]="subtitle"></app-title>
+<!--<nav>-->
+  <!--<a routerLink="contact" routerLinkActive="active">Contact</a>-->
+  <!--<a routerLink="crisis"  routerLinkActive="active">Crisis</a>-->
+  <!--<a routerLink="heroes"  routerLinkActive="active">Heroes</a>-->
+  <!--<a routerLink="jmx-connection"  routerLinkActive="active">Jmx-Connection</a>-->
+<!--</nav>-->
+<div class="row">
+  <div class="col-md-offset-1 col-md-8">
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="active">
+        <a routerLink="jmx-connection"  routerLinkActive="active">Jmx-Connection</a>
+      </li>
+      <li role="presentation">
+        <a routerLink="jmx-connection"  routerLinkActive="active">Jmx-Connection</a>
+      </li>
+      <li role="presentation">
+        <a routerLink="jmx-connection"  routerLinkActive="active">Jmx-Connection</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!--div class="row">
+  <div class="col-md-offset-1 col-md-8">
+    <ngb-tabset>
+      <ngb-tab title="Jmx-Connection">
+        <ng-template ngbTabContent>
+          <a routerLink="jmx-connection"  routerLinkActive="active"></a>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="Jmx-Connection">
+        <ng-template ngbTabContent>
+          <a routerLink="jmx-connection"></a>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
+  </div>
+</div>-->
+
+<div class="row" id="app-jmx-container">
+  <router-outlet></router-outlet>
+</div>

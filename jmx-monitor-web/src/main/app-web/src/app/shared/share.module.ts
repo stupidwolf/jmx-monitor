@@ -3,10 +3,12 @@ import { CommonModule } from "@angular/common";
 import { AwesomePipe } from "./awesome.pipe";
 import { HighlightDirective } from "./highlight.directive";
 import { FormsModule } from "@angular/forms";
+import {HttpModule} from "@angular/http";
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    HttpModule,
   ],
   declarations: [
     AwesomePipe,
