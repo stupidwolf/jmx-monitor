@@ -22,10 +22,9 @@ public class JmxMonitorController {
     @RequestMapping("connection")
     @ResponseBody
     public JmxConnectionMsgModel jmxConnect(@RequestBody JmxConnectionModel jmxConnectionModel) {
-        logger.info("{}", jmxConnectionModel);
-        logger.debug("DEBUG TEST 这个地方输出DEBUG级别的日志");
-        logger.info("INFO test 这个地方输出INFO级别的日志");
-        logger.error("ERROR test 这个地方输出ERROR级别的日志");
+            logger.info("jmx connection from client: {}", jmxConnectionModel);
+
+        //TODO 调用连接操作
 
         return new JmxConnectionMsgModel("200", "connect success..");
     }
