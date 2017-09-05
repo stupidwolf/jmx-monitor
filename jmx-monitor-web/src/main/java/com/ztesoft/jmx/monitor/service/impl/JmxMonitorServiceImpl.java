@@ -29,22 +29,16 @@ public class JmxMonitorServiceImpl implements JmxMonitorService {
 
 //        mBeanServerConnection.
         System.out.println("==============domain==================");
-        for (String domain :
-                domains) {
-            System.out.println(domain);
-
-            if (!StringUtils.isEmpty(domain)) {
-                Set<ObjectName> set = mBeanServerConnection.queryNames(null, null);
+        Set<ObjectName> set = mBeanServerConnection.queryNames(null, null);
 
 //                System.out.println(set);
 
-                for (ObjectName objectName :
-                        set) {
-                    System.out.println(objectName.getDomain());
-                    System.out.println(objectName.getCanonicalName());
-                }
-            }
+        for (ObjectName objectName :
+                set) {
+            System.out.println(objectName.getDomain());
+//                    System.out.println(objectName.getCanonicalName());
 
+            System.out.println(objectName.getKeyPropertyListString());
         }
 
         System.out.println("==============attribute=================");
@@ -71,6 +65,8 @@ public class JmxMonitorServiceImpl implements JmxMonitorService {
 
         jmxConnector.close();
     }
+
+
 
     public static void main(String[] args) throws IOException, MalformedObjectNameException, IntrospectionException, AttributeNotFoundException, MBeanException, ReflectionException, InstanceNotFoundException {
         JmxMonitorService jmxMonitorService = new JmxMonitorServiceImpl();
