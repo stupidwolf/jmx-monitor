@@ -1,0 +1,87 @@
+<div class="container">
+  <div class="row">
+    <h3>MBean View</h3>
+    <ul>
+      <li><mark>MBean Name:</mark> JMImplementation:type=MBeanServerDelegate</li>
+      <li><mark>MBean Java:Class</mark> javax.management.MBeanServerDelegate</li>
+    </ul>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2">
+      <button class="btn btn-default">Back to Agent View</button>
+    </div>
+    <div class="col-md-6">
+      <div class="input-group">
+        <span class="input-group-addon">Reload Period in seconds:</span>
+        <input type="text" class="form-control">
+        <span class="input-group-btn">
+        <button class="btn btn-default" type="button">设置</button>
+      </span>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <button class="btn btn-danger">Unregister</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <!--MBean description-->
+    <div class="row">
+      <h5>MBean description:</h5>
+      <p>Represents the MBean server from the management point of view.</p>
+    </div>
+    <!--List of MBean attributes:-->
+    <div class="row">
+      <h5>List of MBean attributes:</h5>
+      <table class="table">
+        <thead>
+          <tr>
+            <td>Name</td>
+            <td>Type</td>
+            <td>Access</td>
+            <td>Value</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="">ImplementationName</a></td>
+            <td>java.lang.String</td>
+            <td>RO</td>
+            <td>JMX</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!--List of MBean operations:-->
+    <div class="row">
+      <h5>List of MBean operations:</h5>
+
+      <ul>
+        <li>
+          <h6><a href="">Description of helloWorld</a></h6>
+          <div>
+            <code>void</code>
+            <button class="btn btn-default">hello world</button>
+            <!--设置执行方法的参数-->
+            <ul>
+              <li>
+                <div class="input-group">
+                  <span class="input-group-addon">p1</span>
+                  <input type="text" class="form-control">
+                </div>
+              </li>
+              <li>
+                <div class="input-group">
+                  <span class="input-group-addon">p2</span>
+                  <input type="text" class="form-control">
+                </div>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</div>

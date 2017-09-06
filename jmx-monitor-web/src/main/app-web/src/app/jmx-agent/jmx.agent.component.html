@@ -1,5 +1,60 @@
-<h3>agent-view</h3>
+<div class="container">
+  <div class="row">
+    <h3>agent-view</h3>
+  </div>
+
+  <!--过滤器-->
+  <div class="row">
+    <div class="col-md-4">
+      <div class="input-group">
+          <span class="input-group-addon">Filter by object name</span>
+          <input type="text" class="form-control" placeholder="object name filter" aria-describedby="object name filter">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">过滤</button>
+          </span>
+        </div>
+    </div>
+  </div>
+
+  <div class="row" id="agent-view-domain-detail">
+   <!-- count -->
+    <p>This agent is registered on the domain <mark>DefaultDomain</mark>.</p>
+    <p>This page contains <mark>24</mark> MBean(s).</p>
 
 
-sdfhsdfhklsdjf
-fsadjkl
+    <!--objectName list-->
+    <ul>
+      <li>
+        <div class="domain-detail">
+          <p>domain Name</p>
+          <div class="object-name-detail">
+            <ul>
+              <li>
+                <a href=""><code>object name 1</code></a>
+              </li>
+              <li>
+                <a href=""><code>object name 2</code></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="domain-detail">
+          <p>domain Name</p>
+          <div class="object-name-detail">
+            <ul>
+              <li>
+                <a href=""><code>object name 1</code></a>
+              </li>
+              <li>
+                <a href=""><code>object name 2</code></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+

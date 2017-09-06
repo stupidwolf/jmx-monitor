@@ -2,8 +2,8 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
 export const routers: Routes = [
-  // { path: '', redirectTo: 'jmx-connection', pathMatch: 'full'},
-  { path: '', loadChildren: 'app/jmx-connection/jmx.connection.module#JmxConnectionModule'},
+  { path: '', redirectTo: 'jmx-MBean', pathMatch: 'full'},
+  // { path: '', loadChildren: 'app/jmx-connection/jmx.connection.module#JmxConnectionModule'},
   { path: 'jmx-agent', loadChildren: 'app/jmx-agent/jmx.agent.module#JmxAgentModule'},
   // { path: 'jmx-agent', loadChildren: 'app/jmx-agent/jmx.agent.module#JmxAgentModule'},
 
@@ -12,6 +12,7 @@ export const routers: Routes = [
   // { path: 'contact', loadChildren: 'app/crisis/crisis.module#CrisisModule'},
   // { path: 'heroes', loadChildren: 'app/hero/hero.module#HeroModule' }
   { path: 'jmx-connection', loadChildren: 'app/jmx-connection/jmx.connection.module#JmxConnectionModule' },
+  { path: 'jmx-MBean', loadChildren: 'app/jmx-MBean/jmx.m.bean.module#JmxMBeanModule' },
 
 ];
 
