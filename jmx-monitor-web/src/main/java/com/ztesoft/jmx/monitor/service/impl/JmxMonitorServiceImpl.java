@@ -1,7 +1,11 @@
 package com.ztesoft.jmx.monitor.service.impl;
 
+import com.ztesoft.jmx.monitor.exception.connection.JmxConnectionInvalidException;
 import com.ztesoft.jmx.monitor.model.JmxConnectionModel;
 import com.ztesoft.jmx.monitor.service.JmxMonitorService;
+import com.ztesoft.jmx.monitor.vo.ObjectNamesVO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -15,9 +19,10 @@ import java.util.Set;
 
 //@Service
 public class JmxMonitorServiceImpl implements JmxMonitorService {
+    private final static Logger logger = LoggerFactory.getLogger(JmxMonitorServiceImpl.class);
 
     @Override
-    public void connect(JmxConnectionModel jmxConnectionModel) throws IOException, MalformedObjectNameException, AttributeNotFoundException, MBeanException, ReflectionException, InstanceNotFoundException, IntrospectionException {
+    public JMXConnector connect(JmxConnectionModel jmxConnectionModel) throws IOException, MalformedObjectNameException, AttributeNotFoundException, MBeanException, ReflectionException, InstanceNotFoundException, IntrospectionException {
         JMXServiceURL url = new JMXServiceURL("service:jmx:rmi:///jndi/rmi://localhost:1099/jmxrmi");
 
         JMXConnector jmxConnector = JMXConnectorFactory.connect(url,null);
@@ -63,9 +68,31 @@ public class JmxMonitorServiceImpl implements JmxMonitorService {
             System.out.println(operationInfo.getDescription());
         }
 
-        jmxConnector.close();
+        System.out.println(jmxConnector.getConnectionId());
+//        mBeanServerConnection
+        return jmxConnector;
     }
 
+    @Override
+    public ObjectNamesVO getObjectNamesVO(MBeanServerConnection mBeanServerConnection, ObjectName objectName, QueryExp queryExp) throws JmxConnectionInvalidException {
+        if (mBeanServerConnection == null) {
+            throw new JmxConnectionInvalidException();
+        }
+        Set<ObjectName> set = null;
+        Integer domainCount;
+        try {
+            set = mBeanServerConnection.queryNames(objectName, queryExp);
+            domainCount = mBeanServerConnection.getMBeanCount();
+        } catch (IOException e) {
+            e.printStackTrace();
+            logger.error("connect jmx server exception. detail msg: {}", (Object[]) e.getStackTrace());
+            throw new JmxConnectionInvalidException();
+        }
+        if(logger.isInfoEnabled()) {
+            logger.info("query objectNames: objectName: {}, queryExp: {}, domainCount: {}", objectName, queryExp, domainCount);
+        }
+        return new ObjectNamesVO(domainCount, set);
+    }
 
 
     public static void main(String[] args) throws IOException, MalformedObjectNameException, IntrospectionException, AttributeNotFoundException, MBeanException, ReflectionException, InstanceNotFoundException {

@@ -33,17 +33,19 @@ public class ObjectNamesVO implements Serializable{
 
     private void parseObjectNameSet2Map(Set<ObjectName> set) {
         String domain, keyPropertyListString;
-        for (ObjectName objectName :
-                set) {
-            domain = objectName.getDomain();
-            keyPropertyListString = objectName.getKeyPropertyListString();
-            if (objectNames.containsKey(domain)) {
-                objectNames.get(domain)
-                        .add(keyPropertyListString);
-            } else {
-                List<String> list = new ArrayList<String>();
-                list.add(keyPropertyListString);
-                objectNames.put(domain, list);
+        if (set != null ) {
+            for (ObjectName objectName :
+                    set) {
+                domain = objectName.getDomain();
+                keyPropertyListString = objectName.getKeyPropertyListString();
+                if (objectNames.containsKey(domain)) {
+                    objectNames.get(domain)
+                            .add(keyPropertyListString);
+                } else {
+                    List<String> list = new ArrayList<String>();
+                    list.add(keyPropertyListString);
+                    objectNames.put(domain, list);
+                }
             }
         }
     }
