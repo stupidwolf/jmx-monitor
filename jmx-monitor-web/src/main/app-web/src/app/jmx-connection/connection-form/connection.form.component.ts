@@ -1,8 +1,7 @@
-import {Component, EventEmitter, Input, Output} from "@angular/core";
-import { JmxConnectionModel } from "../model/jmx.connection.model";
+import {Component, EventEmitter, Output} from "@angular/core";
+import {JmxConnectionModel} from "../model/jmx.connection.model";
 import {JmxConnectionService} from "../service/jmx.connection.service";
 import {JmxConnectionMsgModel} from "../model/jmx.connection.msg.model";
-import {ToastrService} from "ngx-toastr";
 import {JmxToastService} from "../../jmx-toast/jmx.toast.service";
 
 @Component({

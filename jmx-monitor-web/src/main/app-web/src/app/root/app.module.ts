@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 
 import { AppRoutingModule } from "./app.routing.module"
 import { CoreModule } from "../core/core.module";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 // import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
@@ -17,7 +18,7 @@ import { CoreModule } from "../core/core.module";
     // ContactModule,
     AppRoutingModule,
     CoreModule,
-    // NgbModule,
+    NgbModule,
   ],
   providers: [
   ],

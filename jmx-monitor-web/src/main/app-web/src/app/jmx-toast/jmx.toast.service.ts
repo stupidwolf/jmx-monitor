@@ -8,7 +8,8 @@ import {IndividualConfig, ToastrService} from "ngx-toastr";
 export class JmxToastService {
   toastrConfig: IndividualConfig = {
     closeButton: true,
-    timeOut: 3000
+    timeOut: 3000,
+    enableHtml: true,
   };
 
   constructor (private toastrService: ToastrService) {
