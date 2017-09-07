@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <h3>MBean View</h3>
+    <h3 class="text-capitalize">MBean View</h3>
     <ul>
       <li><mark>MBean Name:</mark> JMImplementation:type=MBeanServerDelegate</li>
       <li><mark>MBean Java:Class</mark> javax.management.MBeanServerDelegate</li>
@@ -9,19 +9,21 @@
 
   <div class="row">
     <div class="col-md-2">
-      <button class="btn btn-default">Back to Agent View</button>
+      <button class="btn btn-primary">Back to Agent View</button>
     </div>
     <div class="col-md-6">
       <div class="input-group">
         <span class="input-group-addon">Reload Period in seconds:</span>
-        <input type="text" class="form-control">
+        <input type="text" class="form-control" title="Reload Period in seconds">
         <span class="input-group-btn">
         <button class="btn btn-default" type="button">设置</button>
       </span>
       </div>
     </div>
     <div class="col-md-2">
-      <button class="btn btn-danger">Unregister</button>
+      <button class="btn btn-danger">
+        unregister <i class="fa fa-times" aria-hidden="true"></i>
+      </button>
     </div>
   </div>
 
@@ -50,8 +52,24 @@
             <td>RO</td>
             <td>JMX</td>
           </tr>
+          <tr>
+            <td><a href="">ImplementationName</a></td>
+            <td>java.lang.String</td>
+            <td>RW</td>
+            <td>
+              <div class="row">
+                <div class="col-md-8">
+                  <input class="form-control" value="JMX" title="jmx value">
+                </div>
+                <div class="col-md-4">
+                  <button class="btn btn-default">Apply</button>
+                </div>
+              </div>
+            </td>
+          </tr>
         </tbody>
       </table>
+      <button class="btn btn-default">Apply</button>
     </div>
     <!--List of MBean operations:-->
     <div class="row">
@@ -61,20 +79,28 @@
         <li>
           <h6><a href="">Description of helloWorld</a></h6>
           <div>
-            <code>void</code>
-            <button class="btn btn-default">hello world</button>
+            <code>void</code><mark>hello world</mark>
+            <button class="btn btn-default">
+              run <i class="fa fa-play" aria-hidden="true"></i>
+            </button>
             <!--设置执行方法的参数-->
             <ul>
               <li>
                 <div class="input-group">
-                  <span class="input-group-addon">p1</span>
-                  <input type="text" class="form-control">
+                  <span class="input-group-addon">p1(String)</span>
+                  <input type="text" class="form-control"
+                         title="方法参数值"
+                         placeholder="请输入参数值"
+                  >
                 </div>
               </li>
               <li>
                 <div class="input-group">
-                  <span class="input-group-addon">p2</span>
-                  <input type="text" class="form-control">
+                  <span class="input-group-addon">p2(Integer)</span>
+                  <input type="text" class="form-control"
+                         title="方法参数值"
+                         placeholder="请输入参数值"
+                  >
                 </div>
               </li>
             </ul>

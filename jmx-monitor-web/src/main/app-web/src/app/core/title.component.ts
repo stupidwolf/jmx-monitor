@@ -6,7 +6,7 @@ import { UserService } from '../service/user.service';
 })
 export class TitleComponent {
   @Input() subtitle = '';
-  title = 'NgModules';
+  title = 'Jmx Monitor';
   user = '';
 
   constructor (userService: UserService) {

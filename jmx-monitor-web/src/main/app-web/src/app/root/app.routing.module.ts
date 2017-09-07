@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
 export const routers: Routes = [
-  { path: '', redirectTo: 'jmx-MBean', pathMatch: 'full'},
+  { path: '', redirectTo: 'jmx-connection', pathMatch: 'full'},
   // { path: '', loadChildren: 'app/jmx-connection/jmx.connection.module#JmxConnectionModule'},
   { path: 'jmx-agent', loadChildren: 'app/jmx-agent/jmx.agent.module#JmxAgentModule'},
   // { path: 'jmx-agent', loadChildren: 'app/jmx-agent/jmx.agent.module#JmxAgentModule'},

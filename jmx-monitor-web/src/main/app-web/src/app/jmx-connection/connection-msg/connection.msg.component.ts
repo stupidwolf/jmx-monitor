@@ -11,6 +11,4 @@ import {JmxConnectionMsgModel} from "../model/jmx.connection.msg.model";
 
 export class  ConnectionMsgComponent {
   connectionMsg: JmxConnectionMsgModel;
-
-
 }

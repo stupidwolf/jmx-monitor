@@ -1,0 +1,10 @@
+ul {
+  list-style-type: none;
+}
+.connect-active {
+  color: #5aea5a;
+}
+
+.connect-inactive {
+  color: #f14444;
+}

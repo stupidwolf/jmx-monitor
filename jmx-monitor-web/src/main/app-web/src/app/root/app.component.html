@@ -1,25 +1,33 @@
-<app-title [subtitle]="subtitle"></app-title>
+<div class="container">
+  <app-title [subtitle]="subtitle"></app-title>
+
+  <div class="row">
+    <div>
+      <ul class="nav nav-tabs">
+        <li role="presentation" class="active">
+          <a routerLink="jmx-connection"  routerLinkActive="active">Jmx-Connection</a>
+        </li>
+        <li role="presentation">
+          <a routerLink="jmx-agent"  routerLinkActive="active">Jmx-Agent-View</a>
+        </li>
+        <li role="presentation">
+          <a routerLink="jmx-MBean"  routerLinkActive="active">Jmx-MBean</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row" id="app-jmx-container">
+    <router-outlet></router-outlet>
+  </div>
+
+</div>
 <!--<nav>-->
   <!--<a routerLink="contact" routerLinkActive="active">Contact</a>-->
   <!--<a routerLink="crisis"  routerLinkActive="active">Crisis</a>-->
   <!--<a routerLink="heroes"  routerLinkActive="active">Heroes</a>-->
   <!--<a routerLink="jmx-connection"  routerLinkActive="active">Jmx-Connection</a>-->
 <!--</nav>-->
-<div class="row">
-  <div class="col-md-offset-1 col-md-8">
-    <ul class="nav nav-tabs">
-      <li role="presentation" class="active">
-        <a routerLink="jmx-connection"  routerLinkActive="active">Jmx-Connection</a>
-      </li>
-      <li role="presentation">
-        <a routerLink="jmx-agent"  routerLinkActive="active">Jmx-Agent-View</a>
-      </li>
-      <li role="presentation">
-        <a routerLink="jmx-MBean"  routerLinkActive="active">Jmx-MBean</a>
-      </li>
-    </ul>
-  </div>
-</div>
 
 <!--div class="row">
   <div class="col-md-offset-1 col-md-8">
@@ -37,7 +45,3 @@
     </ngb-tabset>
   </div>
 </div>-->
-
-<div class="row" id="app-jmx-container">
-  <router-outlet></router-outlet>
-</div>

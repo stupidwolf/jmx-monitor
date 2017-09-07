@@ -1,43 +1,81 @@
-<p><span>连接地址: </span><code>service:jmx:rmi://192.168.0.1/jndi/rmi://192.168.0.1:9999</code></p>
-<form class="form-inline">
-  <!--jmx连接方式-->
-  <div class="form-group">
-    <label>连接方式: </label>
-    <select class="form-control"
-            title="jmx connection mode"
-            name="mode"
-            [(ngModel)]="jmxConnectionModel.mode"
-    >
-      <option>Jmi</option>
-      <option>JMXMP</option>
-    </select>
-    <!--<span class="help-block">jmx-connection-mode</span>-->
-  </div>
+ <div class="row">
+    <p><span>连接地址: </span><code>service:jmx:rmi://192.168.0.1/jndi/rmi://192.168.0.1:9999</code></p>
+   <form class="form">
+        <div class="row">
+          <div class="col-md-4">
+            <!--jmx连接方式-->
+            <div class="form-group">
+              <div class="input-group">
+                <span class="input-group-addon">连接方式: </span>
+                <select class="form-control"
+                        title="jmx connection mode"
+                        name="mode"
+                        [(ngModel)]="jmxConnectionModel.mode"
+                >
+                  <option>Jmi</option>
+                  <option>JMXMP</option>
+                </select>
+              </div>
+              <!--<span class="help-block">jmx-connection-mode</span>-->
+            </div>
+          </div>
 
-  <!--ip address-->
-  <div class="form-group">
-    <label>Ip 地址: </label>
-    <input type="text" class="form-control"
-           placeholder="Jmx Ip Address"
-           name="ipAddress"
-           [(ngModel)]="jmxConnectionModel.ipAddress"
-    >
-    <!--<span  class="help-block">Ip Address</span>-->
-  </div>
+          <div class="col-md-5">
+            <!--ip address-->
+            <div class="form-group">
+              <div class="input-group">
+                <span class="input-group-addon">IP: </span>
+                <input type="text" class="form-control"
+                       placeholder="Jmx Ip Address"
+                       name="ipAddress"
+                       [(ngModel)]="jmxConnectionModel.ipAddress"
+                >
+              </div>
+              <!--<span  class="help-block">Ip Address</span>-->
+            </div>
+          </div>
 
-  <!--ip port-->
-  <div class="form-group">
-    <label>端口: </label>
-    <input type="text" class="form-control"
-           placeholder="Port"
-           name="port"
-           [(ngModel)]="jmxConnectionModel.port"
-    >
-    <!--<span class="help-block">jmx connection port</span>-->
-  </div>
+          <div class="col-md-3">
+            <!--ip port-->
+            <div class="form-group">
+              <div class="input-group">
+                <span class="input-group-addon">Port: </span>
+                <input type="text" class="form-control"
+                       placeholder="Port"
+                       name="port"
+                       [(ngModel)]="jmxConnectionModel.port"
+                >
+              </div>
 
-  <button type="submit" class="btn btn-default"
-          (click)="connectionJmx()"
-  >连接Jmx</button>
-  <button type="submit" class="btn btn-default">测试连接</button>
-</form>
+              <!--<span class="help-block">jmx connection port</span>-->
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group">
+      <span class="input-group-addon">
+        <i class="fa fa-user-circle" aria-hidden="true"></i> 用户名:
+      </span>
+            <input type="text" class="form-control" name="username" placeholder="username">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon">
+              <i class="fa fa-key" aria-hidden="true"></i> 密 码:
+            </div>
+            <input type="text" class="form-control" name="password" placeholder="password">
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-default"
+                  (click)="connectionJmx()"
+          >连接Jmx</button>
+          <button type="submit" class="btn btn-default">测试连接</button>
+        </div>
+
+      </form>
+
+  </div>

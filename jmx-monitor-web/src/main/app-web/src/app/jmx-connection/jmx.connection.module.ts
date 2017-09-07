@@ -6,6 +6,7 @@ import {ConnectionMsgComponent} from "./connection-msg/connection.msg.component"
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {ShareModule} from "../shared/share.module";
 import {JmxConnectionService} from "./service/jmx.connection.service";
+import {JmxConnectionListComponent} from "./connection-list/jmx.connection.list.component";
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import {JmxConnectionService} from "./service/jmx.connection.service";
     JmxConnectionComponent,
     ConnectionFormComponent,
     ConnectionMsgComponent,
+    JmxConnectionListComponent,
   ],
   providers: [
     JmxConnectionService,
