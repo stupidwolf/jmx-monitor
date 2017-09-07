@@ -7,6 +7,9 @@ import { Optional } from "@angular/core";
 import { SkipSelf } from "@angular/core";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
+import { ToastrModule } from 'ngx-toastr';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {JmxToastService} from "../jmx-toast/jmx.toast.service";
 /**
  * 它们有一些只用于AppComponent的模板的一次性的组件（例如：加载动画、消息浮层和模态对话框等）
  * 我们不用在其它地方导入它们，因此没必要共享它们。 然而如果把它们留在根目录，还是显得太大、太乱了
@@ -16,6 +19,9 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
   imports:[
     CommonModule,
     NgbModule.forRoot(),
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), // ToastrModule added
+
   ],
   declarations: [
     TitleComponent,
@@ -25,6 +31,7 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
   ],
   providers: [
     UserService,
+    JmxToastService,
   ]
 })
 
