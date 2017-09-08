@@ -1,7 +1,4 @@
-package com.ztesoft.jmx.monitor.exception.http.response;
-
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
+package com.ztesoft.jmx.monitor.common.exception;
 
 //, reason = "data can not pass valid."
 //@ResponseStatus(value = HttpStatus.BAD_REQUEST)

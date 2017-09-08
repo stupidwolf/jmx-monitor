@@ -1,4 +1,4 @@
-package com.ztesoft.jmx.monitor.dto;
+package com.ztesoft.jmx.monitor.agent.view.dto;
 
 import javax.management.ObjectName;
 import java.io.Serializable;

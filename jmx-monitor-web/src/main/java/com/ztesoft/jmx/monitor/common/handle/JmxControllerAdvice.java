@@ -1,15 +1,14 @@
-package com.ztesoft.jmx.monitor.advice;
+package com.ztesoft.jmx.monitor.common.handle;
 
+import com.ztesoft.jmx.monitor.common.dto.CustomErrorType;
+import com.ztesoft.jmx.monitor.connection.exception.ConnInvalidException;
 import com.ztesoft.jmx.monitor.controller.JmxMonitorController;
-import com.ztesoft.jmx.monitor.dto.CustomErrorType;
-import com.ztesoft.jmx.monitor.exception.InvalidObjectNameFilterException;
-import com.ztesoft.jmx.monitor.exception.connection.JmxConnectionInvalidException;
-import com.ztesoft.jmx.monitor.exception.http.response.DataNotValidException;
+import com.ztesoft.jmx.monitor.agent.view.exeption.InvalidObjectNameFilterException;
+import com.ztesoft.jmx.monitor.common.exception.DataNotValidException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
@@ -33,7 +32,7 @@ public class JmxControllerAdvice extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(new CustomErrorType(status.value(), ex.getMessage()), status);
     }
 
-    @ExceptionHandler(value = {JmxConnectionInvalidException.class})
+    @ExceptionHandler(value = {ConnInvalidException.class})
     @ResponseBody
     ResponseEntity<?> handleConnectionInvalidException(HttpServletRequest request, Throwable ex) {
         return new ResponseEntity<>(

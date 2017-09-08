@@ -1,4 +1,4 @@
-package com.ztesoft.jmx.monitor.exception;
+package com.ztesoft.jmx.monitor.agent.view.exeption;
 
 public class InvalidObjectNameFilterException extends RuntimeException {
     public InvalidObjectNameFilterException() {

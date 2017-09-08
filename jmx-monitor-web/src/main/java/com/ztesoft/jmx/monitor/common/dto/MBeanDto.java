@@ -1,4 +1,4 @@
-package com.ztesoft.jmx.monitor.dto;
+package com.ztesoft.jmx.monitor.common.dto;
 
 public class MBeanDto {
     private Integer domainCount;

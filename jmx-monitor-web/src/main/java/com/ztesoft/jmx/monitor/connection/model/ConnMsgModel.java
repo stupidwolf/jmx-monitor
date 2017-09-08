@@ -1,18 +1,18 @@
-package com.ztesoft.jmx.monitor.model;
+package com.ztesoft.jmx.monitor.connection.model;
 
 /**
  * @Author: 陈名立
  * @Description:
  * @Date: 2017, 九月 03 15:57 on 星期日
  */
-public class JmxConnectionMsgModel {
+public class ConnMsgModel {
     private String code;
     private String msg;
 
-    public JmxConnectionMsgModel() {
+    public ConnMsgModel() {
     }
 
-    public JmxConnectionMsgModel(String code, String msg) {
+    public ConnMsgModel(String code, String msg) {
         this.code = code;
         this.msg = msg;
     }

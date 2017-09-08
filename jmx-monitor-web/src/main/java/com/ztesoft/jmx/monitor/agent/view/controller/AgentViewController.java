@@ -1,9 +1,10 @@
-package com.ztesoft.jmx.monitor.controller;
+package com.ztesoft.jmx.monitor.agent.view.controller;
 
-import com.ztesoft.jmx.monitor.dto.ObjectNamesDTO;
-import com.ztesoft.jmx.monitor.exception.InvalidObjectNameFilterException;
-import com.ztesoft.jmx.monitor.exception.connection.JmxConnectionInvalidException;
-import com.ztesoft.jmx.monitor.service.JmxMonitorService;
+import com.ztesoft.jmx.monitor.agent.view.dto.ObjectNamesDTO;
+import com.ztesoft.jmx.monitor.agent.view.exeption.InvalidObjectNameFilterException;
+import com.ztesoft.jmx.monitor.agent.view.service.IAgentViewService;
+import com.ztesoft.jmx.monitor.connection.exception.ConnInvalidException;
+import com.ztesoft.jmx.monitor.connection.service.IConnService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,37 +19,39 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.management.MBeanServerConnection;
 import javax.management.MalformedObjectNameException;
 import javax.management.ObjectName;
-import javax.management.QueryExp;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @Controller
 @RequestMapping("jmx/agent")
-public class JmxMonitorAgentViewController {
-    private final static Logger logger = LoggerFactory.getLogger(JmxMonitorAgentViewController.class);
+public class AgentViewController {
+    private final static Logger logger = LoggerFactory.getLogger(AgentViewController.class);
 
     @Autowired
-    private JmxMonitorService jmxMonitorService;
+    private IAgentViewService agentViewService;
+
+    @Autowired
+    private IConnService connService;
 
     /**
      *
      * @param filter 格式: *:type=MBeanServerDelegate*
      * @param session session
      * @return 若 filter为空，则返回所有的objectNames信息,否则，根据 filter进行过滤
-     * @throws JmxConnectionInvalidException 无法获取到jmx的连接
+     * @throws ConnInvalidException 无法获取到jmx的连接
      * @throws InvalidObjectNameFilterException 不合法的filter
      */
     @RequestMapping(value = "objectNames", method = {RequestMethod.GET})
     public ResponseEntity<ObjectNamesDTO> getObjectNamesAtAgent(@RequestParam(value = "filter", required=false) String filter, HttpSession session)
-            throws JmxConnectionInvalidException,  InvalidObjectNameFilterException {
+            throws ConnInvalidException,  InvalidObjectNameFilterException {
         MBeanServerConnection mBeanServerConnection = null;
         ObjectName objectName = null;
 
         try {
-            mBeanServerConnection = jmxMonitorService.getCurrentJMXConnector(session).getMBeanServerConnection();
+            mBeanServerConnection = connService.getCurrentJMXConnector(session).getMBeanServerConnection();
         } catch (IOException e) {
             e.printStackTrace();
-            throw new JmxConnectionInvalidException();
+            throw new ConnInvalidException();
         }
 
         try {
@@ -59,7 +62,7 @@ public class JmxMonitorAgentViewController {
             logger.error("{}, {}", "Invalid objectName filter.", e);
             throw new InvalidObjectNameFilterException();
         }
-        ObjectNamesDTO objectNamesDTO = jmxMonitorService.getObjectNamesDTO(mBeanServerConnection,
+        ObjectNamesDTO objectNamesDTO = agentViewService.getObjectNamesDTO(mBeanServerConnection,
                 objectName, null);
 
         return new ResponseEntity<ObjectNamesDTO>(objectNamesDTO, HttpStatus.OK);

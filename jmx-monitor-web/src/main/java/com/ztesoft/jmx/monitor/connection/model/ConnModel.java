@@ -1,11 +1,11 @@
-package com.ztesoft.jmx.monitor.model;
+package com.ztesoft.jmx.monitor.connection.model;
 
 /**
  * @Author: 陈名立
  * @Description:
  * @Date: 2017, 九月 03 16:03 on 星期日
  */
-public class JmxConnectionModel {
+public class ConnModel {
     private String mode;
     private String ipAddress;
     private String port;
@@ -36,7 +36,7 @@ public class JmxConnectionModel {
 
     @Override
     public String toString() {
-        return "JmxConnectionModel{" +
+        return "ConnModel{" +
                 "mode='" + mode + '\'' +
                 ", ipAddress='" + ipAddress + '\'' +
                 ", port='" + port + '\'' +
