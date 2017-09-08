@@ -26,11 +26,11 @@
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger - %msg %n</pattern>
             <charset>UTF-8</charset> <!-- 此处设置字符集 -->
         </encoder>
-        <filter class="ch.qos.logback.classic.filter.LevelFilter"><!-- 只打印错误日志 -->
+<!--        <filter class="ch.qos.logback.classic.filter.LevelFilter">&lt;!&ndash; 只打印错误日志 &ndash;&gt;
             <level>INFO</level>
             <onMatch>ACCEPT</onMatch>
             <onMismatch>DENY</onMismatch>
-        </filter>
+        </filter>-->
     </appender>
 
     <root level="DEBUG">

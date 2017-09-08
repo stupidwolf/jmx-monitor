@@ -2,6 +2,8 @@ package com.ztesoft.jmx.monitor.advice;
 
 import com.ztesoft.jmx.monitor.controller.JmxMonitorController;
 import com.ztesoft.jmx.monitor.dto.CustomErrorType;
+import com.ztesoft.jmx.monitor.exception.InvalidObjectNameFilterException;
+import com.ztesoft.jmx.monitor.exception.connection.JmxConnectionInvalidException;
 import com.ztesoft.jmx.monitor.exception.http.response.DataNotValidException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +31,24 @@ public class JmxControllerAdvice extends ResponseEntityExceptionHandler {
     ResponseEntity<?> handleControllerException(HttpServletRequest request, Throwable ex) {
         HttpStatus status = getStatus(request);
         return new ResponseEntity<>(new CustomErrorType(status.value(), ex.getMessage()), status);
+    }
+
+    @ExceptionHandler(value = {JmxConnectionInvalidException.class})
+    @ResponseBody
+    ResponseEntity<?> handleConnectionInvalidException(HttpServletRequest request, Throwable ex) {
+        return new ResponseEntity<>(
+                new CustomErrorType(HttpStatus.EXPECTATION_FAILED.value(),
+                        ex.getLocalizedMessage()),
+                HttpStatus.EXPECTATION_FAILED);
+    }
+
+    @ExceptionHandler(value = {InvalidObjectNameFilterException.class})
+    @ResponseBody
+    ResponseEntity<?> handleInvalidObjectNameFilterException(HttpServletRequest request, Throwable ex) {
+        return new ResponseEntity<>(
+                new CustomErrorType(HttpStatus.EXPECTATION_FAILED.value(),
+                        ex.getLocalizedMessage()),
+                HttpStatus.EXPECTATION_FAILED);
     }
 
     private HttpStatus getStatus(HttpServletRequest request) {

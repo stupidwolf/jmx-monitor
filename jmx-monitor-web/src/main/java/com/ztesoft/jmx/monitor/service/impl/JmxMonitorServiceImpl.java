@@ -3,21 +3,21 @@ package com.ztesoft.jmx.monitor.service.impl;
 import com.ztesoft.jmx.monitor.exception.connection.JmxConnectionInvalidException;
 import com.ztesoft.jmx.monitor.model.JmxConnectionModel;
 import com.ztesoft.jmx.monitor.service.JmxMonitorService;
-import com.ztesoft.jmx.monitor.vo.ObjectNamesVO;
+import com.ztesoft.jmx.monitor.dto.ObjectNamesDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import javax.management.*;
 import javax.management.remote.JMXConnector;
 import javax.management.remote.JMXConnectorFactory;
 import javax.management.remote.JMXServiceURL;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.Set;
 
-//@Service
+@Service
 public class JmxMonitorServiceImpl implements JmxMonitorService {
     private final static Logger logger = LoggerFactory.getLogger(JmxMonitorServiceImpl.class);
 
@@ -74,8 +74,9 @@ public class JmxMonitorServiceImpl implements JmxMonitorService {
     }
 
     @Override
-    public ObjectNamesVO getObjectNamesVO(MBeanServerConnection mBeanServerConnection, ObjectName objectName, QueryExp queryExp) throws JmxConnectionInvalidException {
+    public ObjectNamesDTO getObjectNamesDTO(MBeanServerConnection mBeanServerConnection, ObjectName objectName, QueryExp queryExp) throws JmxConnectionInvalidException {
         if (mBeanServerConnection == null) {
+            logger.error("mBeanServerConnection can not be null.");
             throw new JmxConnectionInvalidException();
         }
         Set<ObjectName> set = null;
@@ -85,13 +86,37 @@ public class JmxMonitorServiceImpl implements JmxMonitorService {
             domainCount = mBeanServerConnection.getMBeanCount();
         } catch (IOException e) {
             e.printStackTrace();
-            logger.error("connect jmx server exception. detail msg: {}", (Object[]) e.getStackTrace());
+            logger.error("connect jmx server exception. detail msg: {}", e);
             throw new JmxConnectionInvalidException();
         }
         if(logger.isInfoEnabled()) {
             logger.info("query objectNames: objectName: {}, queryExp: {}, domainCount: {}", objectName, queryExp, domainCount);
         }
-        return new ObjectNamesVO(domainCount, set);
+        return new ObjectNamesDTO(domainCount, set);
+    }
+
+    //TODO 应该从当前session中获取
+    @Override
+    public JMXConnector getCurrentJMXConnector(HttpSession session) throws JmxConnectionInvalidException {
+        JMXServiceURL url = null;
+        JMXConnector jmxConnector = null;
+        try {
+            url = new JMXServiceURL("service:jmx:rmi:///jndi/rmi://localhost:1099/jmxrmi");
+            jmxConnector = JMXConnectorFactory.connect(url,null);
+
+        } catch (MalformedURLException e) {
+            logger.error("connect jmx server exception. detail msg: {}", e);
+            throw new JmxConnectionInvalidException("无法解析jmx连接使用的的url");
+        } catch (IOException e) {
+            logger.error("connect jmx server exception. detail msg: {}", e);
+            throw new JmxConnectionInvalidException("由于io原因,无法获取jmx连接");
+        }
+
+        if (jmxConnector == null) {
+            throw new JmxConnectionInvalidException("无法获取jmx连接");
+        }
+
+        return jmxConnector;
     }
 
 

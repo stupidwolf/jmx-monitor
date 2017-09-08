@@ -4,4 +4,8 @@ public class JmxConnectionInvalidException extends RuntimeException{
     public JmxConnectionInvalidException() {
         super("Jmx connection invalid exception.");
     }
+
+    public JmxConnectionInvalidException(String message) {
+        super(message);
+    }
 }

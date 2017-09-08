@@ -1,4 +1,4 @@
-package com.ztesoft.jmx.monitor.vo;
+package com.ztesoft.jmx.monitor.dto;
 
 import javax.management.ObjectName;
 import java.io.Serializable;
@@ -7,7 +7,7 @@ import java.util.*;
 /**
  * 用于展示 Agent View 中的 ObjectName 信息
  */
-public class ObjectNamesVO implements Serializable{
+public class ObjectNamesDTO implements Serializable{
     private static final long serialVersionUID = 8054547305391301894L;
 
     /**
@@ -21,12 +21,12 @@ public class ObjectNamesVO implements Serializable{
     private Map<String, List<String>> objectNames = new HashMap<String, List<String>>();
 
 
-    public ObjectNamesVO(Integer domainCount, Map<String, List<String>> objectNames) {
+    public ObjectNamesDTO(Integer domainCount, Map<String, List<String>> objectNames) {
         this.domainCount = domainCount;
         this.objectNames = objectNames;
     }
 
-    public ObjectNamesVO(Integer domainCount, Set<ObjectName> set) {
+    public ObjectNamesDTO(Integer domainCount, Set<ObjectName> set) {
         this.domainCount = domainCount;
         setObjectNames(set);
     }
@@ -72,7 +72,7 @@ public class ObjectNamesVO implements Serializable{
 
     @Override
     public String toString() {
-        return "ObjectNamesVO{" +
+        return "ObjectNamesDTO{" +
                 "domainCount=" + domainCount +
                 ", objectNames=" + objectNames +
                 '}';
