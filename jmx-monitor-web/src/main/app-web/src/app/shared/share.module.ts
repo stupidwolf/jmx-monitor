@@ -4,6 +4,7 @@ import { AwesomePipe } from "./awesome.pipe";
 import { HighlightDirective } from "./highlight.directive";
 import { FormsModule } from "@angular/forms";
 import {HttpModule} from "@angular/http";
+import {KeysPipe} from "./keys.pipe";
 
 @NgModule({
   imports: [
@@ -12,10 +13,12 @@ import {HttpModule} from "@angular/http";
   ],
   declarations: [
     AwesomePipe,
+    KeysPipe,
     HighlightDirective
   ],
   exports: [
     AwesomePipe,
+    KeysPipe,
     HighlightDirective,
     CommonModule,
     FormsModule,

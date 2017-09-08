@@ -5,12 +5,20 @@
 
   <!--过滤器-->
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
       <div class="input-group">
           <span class="input-group-addon">Filter by object name</span>
-          <input type="text" class="form-control" placeholder="object name filter" aria-describedby="object name filter">
+          <input
+                 type="text"
+                 [(ngModel)]="objectNameFilter"
+                 (keyup.enter)="getObjectNames(objectNameFilter)"
+                 class="form-control"
+                 placeholder="object name filter"
+                 aria-describedby="object name filter">
           <span class="input-group-btn">
-            <button class="btn btn-default" type="button">过滤</button>
+            <button class="btn btn-default"
+                    (click)="getObjectNames(objectNameFilter)"
+                    type="button">过滤</button>
           </span>
         </div>
     </div>
@@ -23,37 +31,19 @@
 
 
     <!--objectName list-->
-    <ul *ngIf="agentModel">
-        <li>
+    <ul *ngIf="agentModel && agentModel.objectNames">
+      <li *ngFor="let entry of agentModel.objectNames | keys">
           <div class="domain-detail">
-            <p>domain Name</p>
+            <p>{{entry.key}}</p>
             <div class="object-name-detail">
               <ul>
-                <li>
-                  <a href=""><code>object name 1</code></a>
-                </li>
-                <li>
-                  <a href=""><code>object name 2</code></a>
+                <li *ngFor="let objectName of entry.value">
+                  <a href="/jmx/ViewObjectRes/{{entry.key}}/{{objectName}}"><code>{{objectName}}</code></a>
                 </li>
               </ul>
             </div>
           </div>
         </li>
-      <li>
-        <div class="domain-detail">
-          <p>domain Name</p>
-          <div class="object-name-detail">
-            <ul>
-              <li>
-                <a href=""><code>object name 1</code></a>
-              </li>
-              <li>
-                <a href=""><code>object name 2</code></a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </li>
     </ul>
   </div>
 </div>

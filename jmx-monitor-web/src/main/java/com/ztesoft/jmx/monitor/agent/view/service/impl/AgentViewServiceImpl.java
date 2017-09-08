@@ -26,7 +26,7 @@ public class AgentViewServiceImpl implements IAgentViewService {
         Integer domainCount;
         try {
             set = mBeanServerConnection.queryNames(objectName, queryExp);
-            domainCount = mBeanServerConnection.getMBeanCount();
+            domainCount = set.size();
         } catch (IOException e) {
             e.printStackTrace();
             logger.error("connect jmx server exception. detail msg: {}", e);

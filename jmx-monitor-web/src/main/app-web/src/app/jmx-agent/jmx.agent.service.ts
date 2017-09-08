@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import {Injectable} from "@angular/core";
 import 'rxjs/add/operator/toPromise';
 import {Http} from "@angular/http";
 import {JmxAgentModel} from "./jmx.agent.model";
@@ -12,7 +12,15 @@ export class JmxAgentService {
 
   }
   public getObjectNames(filter : string): Promise<JmxAgentModel> {
-    return this.http.get(this.getObjectNamesUrl)
+    let params = {};
+    if (filter) {
+      params["filter"] = filter;
+    }
+    // params.set('filter', filter);
+
+    return this.http.get(`${this.getObjectNamesUrl}`, {
+      params: params
+    })
       .toPromise()
       .then(response => {
         return response.json() as JmxAgentModel;
