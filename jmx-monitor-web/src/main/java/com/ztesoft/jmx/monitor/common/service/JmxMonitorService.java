@@ -1,4 +1,4 @@
-package com.ztesoft.jmx.monitor.service;
+package com.ztesoft.jmx.monitor.common.service;
 
 import com.ztesoft.jmx.monitor.connection.exception.ConnInvalidException;
 import com.ztesoft.jmx.monitor.connection.model.ConnModel;

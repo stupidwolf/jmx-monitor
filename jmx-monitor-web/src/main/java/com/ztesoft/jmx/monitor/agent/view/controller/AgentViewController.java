@@ -59,7 +59,7 @@ public class AgentViewController {
                 objectName = new ObjectName(filter);
             }
         } catch (MalformedObjectNameException e) {
-            logger.error("{}, {}", "Invalid objectName filter.", e);
+            logger.error("{}", "Invalid objectName filter.", e);
             throw new InvalidObjectNameFilterException();
         }
         ObjectNamesDTO objectNamesDTO = agentViewService.getObjectNamesDTO(mBeanServerConnection,

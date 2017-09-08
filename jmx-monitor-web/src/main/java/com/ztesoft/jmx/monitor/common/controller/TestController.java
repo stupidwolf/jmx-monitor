@@ -1,4 +1,4 @@
-package com.ztesoft.jmx.monitor.controller;
+package com.ztesoft.jmx.monitor.common.controller;
 
 import com.ztesoft.jmx.monitor.common.exception.DataNotValidException;
 import org.springframework.stereotype.Controller;

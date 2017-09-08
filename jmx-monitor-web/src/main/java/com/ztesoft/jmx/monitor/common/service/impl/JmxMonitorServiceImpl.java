@@ -1,6 +1,6 @@
-package com.ztesoft.jmx.monitor.service.impl;
+package com.ztesoft.jmx.monitor.common.service.impl;
 
-import com.ztesoft.jmx.monitor.service.JmxMonitorService;
+import com.ztesoft.jmx.monitor.common.service.JmxMonitorService;
 import org.springframework.stereotype.Service;
 
 @Service

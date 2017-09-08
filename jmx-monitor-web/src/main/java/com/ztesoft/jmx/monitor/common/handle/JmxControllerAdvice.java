@@ -1,10 +1,8 @@
 package com.ztesoft.jmx.monitor.common.handle;
 
 import com.ztesoft.jmx.monitor.common.dto.CustomErrorType;
-import com.ztesoft.jmx.monitor.connection.exception.ConnInvalidException;
-import com.ztesoft.jmx.monitor.controller.JmxMonitorController;
-import com.ztesoft.jmx.monitor.agent.view.exeption.InvalidObjectNameFilterException;
 import com.ztesoft.jmx.monitor.common.exception.DataNotValidException;
+import com.ztesoft.jmx.monitor.connection.exception.ConnInvalidException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -14,14 +12,15 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import javax.servlet.http.HttpServletRequest;
 
-@ControllerAdvice(basePackageClasses = {JmxMonitorController.class})
+//TODO 需要细分么?
+@ControllerAdvice(basePackages = {"com.ztesoft.jmx.monitor"})
 public class JmxControllerAdvice extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = {DataNotValidException.class})
     @ResponseBody
     ResponseEntity<?> handleBadRequest(HttpServletRequest request, Throwable ex) {
         return new ResponseEntity<>(
-                new CustomErrorType(HttpStatus.BAD_REQUEST.value(), ex.getLocalizedMessage()),
+                new CustomErrorType(HttpStatus.BAD_REQUEST.value(), ex.getMessage()),
                 HttpStatus.BAD_REQUEST);
     }
 
@@ -35,15 +34,6 @@ public class JmxControllerAdvice extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value = {ConnInvalidException.class})
     @ResponseBody
     ResponseEntity<?> handleConnectionInvalidException(HttpServletRequest request, Throwable ex) {
-        return new ResponseEntity<>(
-                new CustomErrorType(HttpStatus.EXPECTATION_FAILED.value(),
-                        ex.getLocalizedMessage()),
-                HttpStatus.EXPECTATION_FAILED);
-    }
-
-    @ExceptionHandler(value = {InvalidObjectNameFilterException.class})
-    @ResponseBody
-    ResponseEntity<?> handleInvalidObjectNameFilterException(HttpServletRequest request, Throwable ex) {
         return new ResponseEntity<>(
                 new CustomErrorType(HttpStatus.EXPECTATION_FAILED.value(),
                         ex.getLocalizedMessage()),

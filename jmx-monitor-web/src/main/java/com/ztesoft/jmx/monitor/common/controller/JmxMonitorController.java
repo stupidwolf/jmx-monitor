@@ -1,4 +1,4 @@
-package com.ztesoft.jmx.monitor.controller;
+package com.ztesoft.jmx.monitor.common.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
