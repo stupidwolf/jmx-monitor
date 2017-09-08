@@ -2,6 +2,7 @@ package com.ztesoft.jmx.monitor.mbean.view.service.impl;
 
 import com.ztesoft.jmx.monitor.connection.exception.ConnInvalidException;
 import com.ztesoft.jmx.monitor.mbean.view.dto.MBeanDTO;
+import com.ztesoft.jmx.monitor.mbean.view.exception.CanNotGetMBeanAttrValueException;
 import com.ztesoft.jmx.monitor.mbean.view.exception.MBeanException;
 import com.ztesoft.jmx.monitor.mbean.view.exception.MBeanInfoNotFoundException;
 import com.ztesoft.jmx.monitor.mbean.view.model.MBeanAttr;
@@ -40,13 +41,12 @@ public class MBeanViewServiceImpl implements IMBeanViewService {
         mBeanInfo = getMBeanInfo(mBeanServerConnection, objectName);
 
         //mBeanInfo -> mBeanDTO
-        mBeanDTO = transferMBeanInfo2MBeanDTO(mBeanInfo);
-        //FIXME 获取并设置mBean name
-        mBeanDTO.setMbeanName(objectName.getDomain() + ":" + objectName.getKeyPropertyListString());
+        mBeanDTO = transferMBeanInfo2MBeanDTO(mBeanServerConnection, objectName, mBeanInfo);
+
         return mBeanDTO;
     }
 
-    private MBeanDTO transferMBeanInfo2MBeanDTO(MBeanInfo mBeanInfo) {
+    private MBeanDTO transferMBeanInfo2MBeanDTO(MBeanServerConnection mBeanServerConnection, ObjectName objectName, MBeanInfo mBeanInfo) throws CanNotGetMBeanAttrValueException{
         MBeanDTO mBeanDTO;
 //        String name;
         String description;
@@ -63,14 +63,17 @@ public class MBeanViewServiceImpl implements IMBeanViewService {
         operationInfos= mBeanInfo.getOperations();
 
         mBeanDTO = new MBeanDTO();
+
+        //获取并设置mBean name
+        mBeanDTO.setMbeanName(objectName.getDomain() + ":" + objectName.getKeyPropertyListString());
         mBeanDTO.setMbeanDescription(description);
         mBeanDTO.setMbeanClass(className);
-        mBeanDTO.setmBeanAttrList(transferMBeanInfoAttrs2List(attributeInfos));
+        mBeanDTO.setmBeanAttrList(transferMBeanInfoAttrs2List(mBeanServerConnection, objectName, attributeInfos));
         mBeanDTO.setmBeanOperationList(transferMBeanOperation2List(operationInfos));
         return mBeanDTO;
     }
 
-    private List<MBeanAttr> transferMBeanInfoAttrs2List(MBeanAttributeInfo[] attributeInfos) {
+    private List<MBeanAttr> transferMBeanInfoAttrs2List(MBeanServerConnection mBeanServerConnection, ObjectName objectName, MBeanAttributeInfo[] attributeInfos) throws CanNotGetMBeanAttrValueException {
         List<MBeanAttr> mBeanAttrList = new LinkedList<MBeanAttr>();
         MBeanAttr mBeanAttr;
         if (attributeInfos != null) {
@@ -82,7 +85,14 @@ public class MBeanViewServiceImpl implements IMBeanViewService {
                 mBeanAttr.setType(attribute.getType());
                 mBeanAttr.setReadable(attribute.isReadable());
                 mBeanAttr.setWritable(attribute.isWritable());
-                mBeanAttr.setValue(mBeanAttr.getValue());
+                String attributeVal = null;
+                try {
+                    attributeVal = mBeanServerConnection.getAttribute(objectName, attribute.getName()).toString();
+                } catch(Exception e) {
+                    logger.warn("无法获取属性值 {} ", mBeanAttr, e);
+//                    throw new CanNotGetMBeanAttrValueException("无法获取属性值异常", e);
+                }
+                mBeanAttr.setValue(attributeVal);
                 mBeanAttrList.add(mBeanAttr);
             }
         }
