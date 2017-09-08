@@ -19,26 +19,26 @@
   <div class="row" id="agent-view-domain-detail">
    <!-- count -->
     <p>This agent is registered on the domain <mark>DefaultDomain</mark>.</p>
-    <p>This page contains <mark>24</mark> MBean(s).</p>
+    <p>This page contains <mark *ngIf="agentModel">{{agentModel.domainCount}}</mark> MBean(s).</p>
 
 
     <!--objectName list-->
-    <ul>
-      <li>
-        <div class="domain-detail">
-          <p>domain Name</p>
-          <div class="object-name-detail">
-            <ul>
-              <li>
-                <a href=""><code>object name 1</code></a>
-              </li>
-              <li>
-                <a href=""><code>object name 2</code></a>
-              </li>
-            </ul>
+    <ul *ngIf="agentModel">
+        <li>
+          <div class="domain-detail">
+            <p>domain Name</p>
+            <div class="object-name-detail">
+              <ul>
+                <li>
+                  <a href=""><code>object name 1</code></a>
+                </li>
+                <li>
+                  <a href=""><code>object name 2</code></a>
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
-      </li>
+        </li>
       <li>
         <div class="domain-detail">
           <p>domain Name</p>
